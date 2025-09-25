@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>InverFast — Telegram</title>
 <meta name="description" content="Conéctate con InverFast en Telegram.">
-<!-- Fallback: si no hay JS, redirige en 2s -->
+<!-- Fallback si el JS estuviera bloqueado -->
 <meta http-equiv="refresh" content="2;url=https://t.me/inverfast">
 
 <style>
@@ -14,12 +14,10 @@
     --card:#1e1f22;
     --ink:#e9eef3;
     --muted:#a7b0ba;
-    --blue:#2AABEE;       /* Telegram blue */
+    --blue:#2AABEE;     /* Telegram */
     --blue-2:#229ED9;
     --outline:#2b2c30;
-    --radius:18px;
     --shadow:0 20px 60px rgba(0,0,0,.35);
-    --gold:#e0b652;       /* tu dorado */
   }
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -29,77 +27,66 @@
     display:grid; place-items:center;
   }
 
-  /* ===== Fondo tipo doodles de Telegram ===== */
+  /* Fondo con doodles tipo Telegram */
   .bg{
-    position:fixed; inset:0; pointer-events:none; opacity:.24;
-    background-image:
-      radial-gradient(circle at 20% 15%, #222 0 20%, transparent 21%),
-      radial-gradient(circle at 80% 85%, #222 0 20%, transparent 21%),
-      url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'>\
-<rect width='320' height='320' fill='none'/>\
-<g fill='none' stroke='%235d635f' stroke-width='1.2' opacity='.55'>\
-<circle cx='40' cy='40' r='12'/>\
-<path d='M100 34l10 12-10 12-10-12z'/>\
-<rect x='150' y='28' width='24' height='24' rx='6'/>\
-<path d='M210 40h30M225 25v30'/>\
-<path d='M35 115c14-10 28-10 42 0M35 135c14 10 28 10 42 0'/>\
-<circle cx='110' cy='120' r='10'/><path d='M110 110v20M100 120h20'/>\
-<path d='M170 120c0-14 24-14 24 0s-24 14-24 0z'/>\
-<path d='M235 112l28 16-28 16z'/>\
-<path d='M35 210l22-12 22 12-22 12z'/>\
-<rect x='100' y='196' width='30' height='30' rx='4'/>\
-<path d='M170 200h30v30h-30z'/>\
-<circle cx='245' cy='210' r='15'/>\
-<path d='M270 270l20-12v24z'/>\
-<path d='M40 270c12 0 12 18 24 18s12-18 24-18'/>\
-</g></svg>");
-    background-size: 1000px 1000px, 900px 900px, 320px 320px;
-    background-repeat: no-repeat, no-repeat, repeat;
-    background-position: -20% -10%, 120% 110%, center;
+    position:fixed; inset:0; pointer-events:none; opacity:.22;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'><rect width='320' height='320' fill='none'/><g fill='none' stroke='%235d635f' stroke-width='1.2' opacity='.55'><circle cx='40' cy='40' r='12'/><path d='M100 34l10 12-10 12-10-12z'/><rect x='150' y='28' width='24' height='24' rx='6'/><path d='M210 40h30M225 25v30'/><path d='M35 115c14-10 28-10 42 0M35 135c14 10 28 10 42 0'/><circle cx='110' cy='120' r='10'/><path d='M110 110v20M100 120h20'/><path d='M170 120c0-14 24-14 24 0s-24 14-24 0z'/><path d='M235 112l28 16-28 16z'/><path d='M35 210l22-12 22 12-22 12z'/><rect x='100' y='196' width='30' height='30' rx='4'/><path d='M170 200h30v30h-30z'/><circle cx='245' cy='210' r='15'/><path d='M270 270l20-12v24z'/><path d='M40 270c12 0 12 18 24 18s12-18 24-18'/></g></svg>");
+    background-size: 320px 320px;
   }
 
-  /* ===== Tarjeta central ===== */
+  /* Tarjeta central */
   .card{
     position:relative; z-index:1;
     width:min(560px, 92vw);
     background:var(--card);
     border-radius:24px;
-    box-shadow:var(--shadow);
     border:1px solid var(--outline);
+    box-shadow:var(--shadow);
     padding:28px 24px 26px;
     text-align:center;
   }
+
+  /* Avatar con logo embebido (SVG dorado) */
   .avatar{
     width:112px; height:112px; border-radius:50%;
     margin:-70px auto 10px;
     border:6px solid var(--card);
-    background:
-      radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,.08), transparent 60%),
-      #111 url('LOGO_URL.png') center/70% no-repeat;
+    background:#111 center/74% no-repeat;
+    /* ⚠️ Si quieres usar tu PNG real, reemplaza la línea de abajo por:
+       background-image:url('inverfast-logo.png'); */
+    background-image:url("data:image/svg+xml;utf8, \
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'>\
+  <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>\
+    <stop offset='0' stop-color='%23f2d480'/><stop offset='1' stop-color='%23d9b45b'/></linearGradient></defs>\
+  <rect width='256' height='256' rx='128' fill='%23111111'/>\
+  <circle cx='128' cy='128' r='100' fill='none' stroke='url(%23g)' stroke-width='16'/>\
+  <path d='M72 156l44-52 28 20 40-36' fill='none' stroke='url(%23g)' stroke-width='18' stroke-linecap='round' stroke-linejoin='round'/>\
+  <path d='M180 84l-10 36-36-10' fill='none' stroke='url(%23g)' stroke-width='18' stroke-linecap='round'/>\
+</svg>");
     box-shadow:0 8px 28px rgba(0,0,0,.4), 0 0 0 1px #2b2c30 inset;
   }
+
   .title{font-size:26px; font-weight:800; margin:6px 0 0}
   .handle{color:var(--muted); margin:2px 0 16px; font-weight:600}
 
-  /* ===== Botones ===== */
+  /* Botones */
   .btn{
     display:flex; align-items:center; justify-content:center; gap:10px;
     width:100%; max-width:260px; margin:10px auto 0;
     padding:14px 18px; border-radius:28px; font-weight:800; text-decoration:none;
     border:1px solid transparent; transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
   }
+  .btn svg{width:22px; height:22px}
   .btn-primary{
     color:#fff; background:linear-gradient(135deg, var(--blue), var(--blue-2));
     box-shadow:0 12px 28px rgba(34,158,217,.36), inset 0 1px 0 rgba(255,255,255,.25);
   }
   .btn-primary:hover{ transform:translateY(-2px); filter:saturate(1.08) }
   .btn-secondary{
-    color:var(--ink); background:#2a2c31; border-color:#2f3238;
+    color:#e9eef3; background:#2a2c31; border-color:#2f3238;
   }
-  .btn-secondary:hover{ transform:translateY(-2px); }
+  .btn-secondary:hover{ transform:translateY(-2px) }
 
-  .btn svg{width:22px; height:22px}
   .badge{display:inline-block;margin-top:12px;color:#cfcfcf;background:#141518;border:1px solid #2a2b2f;padding:6px 10px;border-radius:999px;font-size:12px}
   .hint{margin-top:14px; color:var(--muted); font-size:13px}
 </style>
@@ -112,7 +99,7 @@
   <h1 class="title">InverFast</h1>
   <div class="handle">@inverfast</div>
 
-  <!-- BOTÓN QUE PEDISTE: ENVIAR MENSAJE + LOGO TELEGRAM -->
+  <!-- Botón principal: ENVIAR MENSAJE (con logo Telegram) -->
   <a class="btn btn-primary" href="tg://resolve?domain=inverfast" id="btn-app">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M12 2C6.48 2 2 6.48 2 12a10 10 0 1 0 20 0C22 6.48 17.52 2 12 2zm5.13 6.39-1.64 7.73c-.12.54-.44.67-.89.42l-2.45-1.81-1.18 1.14c-.13.13-.24.24-.48.24l.17-2.53 4.62-4.17c.2-.17-.04-.27-.31-.1l-5.7 3.59-2.46-.77c-.54-.17-.55-.54.12-.8l9.6-3.71c.44-.16.83.11.69.8z"/>
@@ -120,7 +107,7 @@
     ENVIAR MENSAJE
   </a>
 
-  <!-- SECUNDARIO: WEB -->
+  <!-- Secundario: abrir versión web -->
   <a class="btn btn-secondary" href="https://t.me/inverfast" target="_blank" rel="noopener" id="btn-web">
     ABRIR EN LA WEB
   </a>
@@ -130,22 +117,25 @@
 </main>
 
 <script>
-/* Intento automático: abrir app → si falla, abrir web */
+/* Redirección automática:
+   1) intenta abrir app Telegram (tg://)
+   2) si falla, envía a https://t.me/inverfast
+   3) los botones quedan como fallback visible */
 (function(){
   let jumped = false;
-  const tryApp = () => {
-    const i = document.createElement('iframe');
-    i.style.display='none';
-    i.src = 'tg://resolve?domain=inverfast';
-    document.body.appendChild(i);
-    const t = Date.now();
-    setTimeout(()=>{ if (Date.now()-t<1200 && !jumped) location.href='https://t.me/inverfast'; }, 900);
-  };
-  // si viene de un anuncio, intentamos de una
-  tryApp();
+  // 1) Intento app nativa (en muchos in-app browsers falla)
+  const i = document.createElement('iframe');
+  i.style.display='none';
+  i.src = 'tg://resolve?domain=inverfast';
+  document.body.appendChild(i);
 
+  // 2) Fallback a web
+  setTimeout(()=>{ if (!jumped) location.href='https://t.me/inverfast'; }, 900);
+
+  // Si realmente saltó a la app, el doc queda hidden
   document.addEventListener('visibilitychange', ()=>{ if (document.hidden) jumped = true; });
-  // Botón principal: si falla app en in-app browsers, que al menos abra web
+
+  // Si hacen click en el botón de app y no abre, manda a web
   document.getElementById('btn-app').addEventListener('click', function(e){
     setTimeout(()=>{ if (!jumped) location.href='https://t.me/inverfast'; }, 800);
   });
